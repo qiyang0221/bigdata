@@ -1,3 +1,7 @@
+import matplotlib
+import matplotlib.pyplot as plt
+from numpy import *
+
 def getFeature(book_file_name,book_class_file_name):
     bk_class_fr = open(book_class_file_name)
     line = bk_class_fr.readline()  
@@ -34,18 +38,36 @@ def getFeature(book_file_name,book_class_file_name):
         line = bk_fr.readline()
     bk_fr.close()
 
-    mat = [[0 for col in range(len(bk_class_set)+1)] for row in range(len(bk))]
-    row = 0
     for key in bk.keys():
-        col = 0
-        mat[row][col] = key
-        col += 1
+        tot = 0
         for val in bk[key].values():
-            mat[row][col] = val
-            col += 1
-        row+=1
+            tot += val
+        bk[key]['bk_total'] = tot
 
-    for i in range(len(mat)):
-        for j in range(len(mat[i])):
-            print mat[i][j],
+    feature = ['TV', 'TT', 'TU', 'TS', 'TP', 'TQ', 'TN', 'TL', 'TM', 'TJ', 'TK', 'TH', 'TF', 'TG', 'TD', 'TE', 'TB', 'A', 'C', 'B', 'E', 'D', 'G', 'F', 'I', 'H', 'K', 'J', 'M', 'L', 'O', 'N','Q', 'P', 'S', 'R', 'U', 'T', 'V', 'Y', 'X', 'Z','bk_total']
+    for f in feature:
+        featurePlot(bk,f)
+
+'''
+    for key in bk.keys():
+        print key,
+        for kk in bk[key].keys():
+            print "%s:%d" % (kk,bk[key][kk]),
         print
+'''
+
+def featurePlot(dictionary,feature):
+   y = zeros(len(dictionary))
+   i = 0
+   for key in dictionary.keys():
+       y[i] = dictionary[key][feature]
+       i += 1
+   
+   x = range(len(dictionary))
+
+   plt.plot(x,y)
+   plt.xlabel("student")
+   plt.ylabel(feature)
+   plt.title(feature)
+   plt.show()
+    
