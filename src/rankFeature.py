@@ -3,20 +3,20 @@ def getFeature(infile):
     line = fr.readline()
     line = fr.readline()
     
-    bk = {}
+    rk = {}
     while line:
         line = line.strip()
         listArray = line.split('\t')
         key = listArray[0] + '_'+listArray[1]
-        features = {}
-        features['rank'] = listArray[2]
-        bk[key] = features
+        rk[key] = {}
+        rk[key]['rank'] = int(listArray[2])
         line = fr.readline()
 
-    for key in bk.keys():
+    return rk
+'''
+    for key in rk.keys():
         print key,
-        for val in bk[key].values():
+        for val in rk[key].values():
             print val,
         print
-
-     
+'''
