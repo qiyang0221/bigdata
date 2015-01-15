@@ -4,15 +4,17 @@ def getFeature(infile):
     line = fr.readline()
     
     rk = {}
+    mx_rk = 0
     while line:
         line = line.strip()
         listArray = line.split('\t')
         key = listArray[0] + '_'+listArray[1]
         rk[key] = {}
         rk[key]['rank'] = int(listArray[2])
+        mx_rk = max(mx_rk,rk[key]['rank'])
         line = fr.readline()
 
-    return rk
+    return rk,mx_rk
 '''
     for key in rk.keys():
         print key,
