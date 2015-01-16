@@ -17,7 +17,7 @@ def getFeature(infile):
         tmp = line.split('\t')
         semester = tmp[0]
         sid = int(tmp[1])
-        key = semester+ '_' + str(sid)
+        key = semester+ '.' + str(sid)
 
         location = tmp[2]
         money = round(float(tmp[5]),3)

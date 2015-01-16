@@ -8,7 +8,7 @@ def getFeature(infile):
     while line:
         line = line.strip()
         listArray = line.split('\t')
-        key = listArray[0] + '_'+listArray[1]
+        key = listArray[0] + '.'+listArray[1]
         rk[key] = {}
         rk[key]['rank'] = int(listArray[2])
         mx_rk = max(mx_rk,rk[key]['rank'])

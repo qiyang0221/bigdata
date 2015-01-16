@@ -27,7 +27,7 @@ def getFeature(book_file_name,book_class_file_name):
     while line:
         line = line.strip()
         listArray = line.split('\t')
-        key = listArray[0]+'_'+listArray[1]
+        key = listArray[0]+'.'+listArray[1]
         bk_num = listArray[2]
         if bk_class.has_key(bk_num):
             bk_kind = bk_class[bk_num]

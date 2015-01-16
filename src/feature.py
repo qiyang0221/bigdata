@@ -49,8 +49,8 @@ for f in consume_feature_list:
 
 
 for key in sorted(features.keys()):
-    print mx_rk - features[key]['rank'],
-    key_arr = key.split('_')
+    print features[key]['rank'],
+    key_arr = key.split('.')
     print 'qid:%s' % key_arr[0],
 
     i = 1
