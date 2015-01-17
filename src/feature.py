@@ -8,7 +8,7 @@ import consumeFeature as consume
 
 path = "../data"
 
-directory = '/test'
+directory = '/train'
 
 book_class_path = path + '/book_class.txt'
 book_path = path + directory + '/book.txt'
@@ -33,7 +33,7 @@ libaccess_features = libaccess.getFeature(libaccess_path)
 libaccess_feature_list = [0,1,2,3,4,5]
 for f in libaccess_feature_list:
     for key in features.keys():
-        if key not in libaccess_features:
+        if key not in libaccess_features.keys():
             features[key][f] = 0
         else:
             features[key][f] = libaccess_features[key][f]
