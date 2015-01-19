@@ -23,7 +23,7 @@ def getFeature(infile):
         semester = tmp[0]
         sid = int(tmp[1])
 
-        key = semester+ '_' + str(sid)
+        key = semester+ '.' + str(sid)
         date = tmp[2]
         month = date[:2]
         if month == '02':
