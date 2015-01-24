@@ -9,7 +9,7 @@ import featurePlot as fp
 
 path = "../data"
 
-directory = '/test'
+directory = '/train'
 
 book_class_path = path + '/book_class.txt'
 book_path = path + directory + '/book.txt'
