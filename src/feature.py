@@ -5,6 +5,7 @@ import bookFeature as book
 import rankFeature as rank
 import libAccessFeature as libaccess
 import consumeFeature as consume
+import featurePlot as fp
 
 path = "../data"
 
@@ -17,8 +18,9 @@ libaccess_path = path + directory + '/lib_time.txt'
 consume_path = path + directory + '/consume.txt'
 
 features,mx_rk = rank.getFeature(rank_path)
-bk_features = book.getFeature(book_path,book_class_path)
 
+'''
+bk_features = book.getFeature(book_path,book_class_path)
 bk_feature_list = ['TP', 'TN', 'TM', 'C', 'B', 'E', 'D', 'G', 'F', 'I', 'H', 'K', 'J','O', 'bk_total']
 
 for f in bk_feature_list:
@@ -27,6 +29,7 @@ for f in bk_feature_list:
             features[key][f] = 0
         else:
             features[key][f] = bk_features[key][f]
+'''
 
 
 libaccess_features = libaccess.getFeature(libaccess_path)
@@ -39,13 +42,20 @@ for f in libaccess_feature_list:
             features[key][f] = libaccess_features[key][f]
 
 consume_features = consume.getFeature(consume_path)
-consume_feature_list = ['打印','图书馆','宿舍','教室','超市','食堂','交通','con_total']
+consume_feature_list = ['copy','lib','apartment','classroom','supermarket','eat','transport']
 for f in consume_feature_list:
     for key in features.keys():
         if key not in consume_features.keys():
             features[key][f] = 0
         else:
             features[key][f] = consume_features[key][f]
+
+all_feature = [0,1,2,3,4,5,'copy','lib','apartment','classroom','supermarket','eat','transport']
+
+'''
+for f in all_feature:
+    fp.draw(features,f)
+'''
 
 for key in sorted(features.keys()):
     print mx_rk-features[key]['rank'],

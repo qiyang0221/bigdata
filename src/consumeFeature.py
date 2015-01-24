@@ -8,7 +8,7 @@ def getFeature(infile):
     #features: 消费数据['打印','图书馆','宿舍','教室','超市','食堂','交通','con_total']
     inConsumeData = codecs.open(infile,'r')
     data = {}
-    locations = ['打印','图书馆','宿舍','教室','超市','食堂','交通']
+    locations = {'打印':'copy','图书馆':'lib','宿舍':'apartment','教室':'classroom','超市':'supermarket','食堂':'eat','交通':'transport'}
     cnt = 0
     line = inConsumeData.readline()
     line = inConsumeData.readline()
@@ -19,16 +19,16 @@ def getFeature(infile):
         sid = int(tmp[1])
         key = semester+ '.' + str(sid)
 
-        location = tmp[2]
+        loc = tmp[2]
         money = round(float(tmp[5]),3)
         if key not in data.keys():
             data[key] = {}
-            for loc in locations:
-                data[key][loc] = 0
-            data[key][location] = money
+            for val in locations.values():
+                data[key][val] = 0
+            data[key][locations[loc]] = money
             data[key]['con_total'] = money
         else:
-            data[key][location] += money
+            data[key][locations[loc]] += money
             data[key]['con_total'] += money
         cnt += 1
         line = inConsumeData.readline()

@@ -20,13 +20,13 @@ def draw(rank):
     rk_1 = {}
     i = 0
     for key in sorted(rank.keys()):
-        if i > 538:
+        if i > 91:
             break
         rk_1[rank[key]['rank']] = score[i]
         i += 1
 
-    x = [0 for i in range(538)]
-    y = [0 for i in range(538)]
+    x = [0 for i in range(91)]
+    y = [0 for i in range(91)]
     i = 0
     for key in sorted(rk_1.keys()):
         x[i] = key
@@ -39,5 +39,5 @@ def draw(rank):
     plt.title("term_1")
     plt.show()
 
-rk,mx = rank.getFeature('../data/train/rank.txt')
+rk,mx = rank.getFeature('../data/test/rank.txt')
 draw(rk)
