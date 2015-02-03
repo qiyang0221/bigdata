@@ -62,7 +62,7 @@ def dormTime(time):
 def getFeature(infile,features):
     fr = codecs.open(infile,'r')
 
-    new_features = ['dorm_0','dorm_1','dorm_2','eat_0','eat_1','eat_2']
+    new_features = ['dorm0','dorm1','dorm2','eat0','eat1','eat2']
     locations = {'打印':'copy','图书馆':'lib','宿舍':'dorm','教室':'classroom','超市':'supermarket','食堂':'eat','交通':'transport'}
     features = utils.featureInit(features,new_features)
 
@@ -76,17 +76,17 @@ def getFeature(infile,features):
         sem = listArray[0]
         stu = listArray[1]
         loc = locations[listArray[2]]
-        date = utils.convertDate(listArray[3])
-        time = listArray[4]
+        date = utils.convertDate(sem,listArray[3])
+        time = int(listArray[4])
         interval = -1
         
         if loc == 'dorm':
             interval = dormTime(time)
         elif loc == 'eat':
             interval = dormTime(time)
-        else
+        else:
             interval = -1
-        if date == -1 or interval == -1
+        if date == -1 or interval == -1:
             continue
-        features[sem][stu][date][loc+interval] = 1    
+        features[sem][stu][date][loc+str(interval)] = 1    
     return features

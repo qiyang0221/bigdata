@@ -21,29 +21,13 @@ consume_path = path + directory + '/consume.txt'
 features,mx_rk = rank.getFeature(rank_path)
 
 features = book.getFeature(book_path,book_class_path,features)
+features = consume.getFeature(consume_path,features)
+features = libaccess.getFeature(libaccess_path,features)
 
-'''
-libaccess_features = libaccess.getFeature(libaccess_path)
-libaccess_feature_list = [0,1,2,3,4,5]
-for f in libaccess_feature_list:
-    for key in features.keys():
-        if key not in libaccess_features.keys():
-            features[key][f] = 0
-        else:
-            features[key][f] = libaccess_features[key][f]
-
-consume_features = consume.getFeature(consume_path)
-consume_feature_list = ['eat','dorm']
-for f in consume_feature_list:
-    for key in features.keys():
-        if key not in consume_features.keys():
-            features[key][f] = 0
-        else:
-            features[key][f] = consume_features[key][f]
-'''
 for sem in features.keys():
     for stu in features[sem].keys():
-        print sem,features[sem][stu]['rank'],
+        print sem,stu,
+        print "rank:%d" %(features[sem][stu]['rank']),
         for date in range(utils.getDateLen()):
             for ft in features[sem][stu][date].keys():
                 print '%s:%d' %(str(date) +ft,features[sem][stu][date][ft]),
