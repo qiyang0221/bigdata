@@ -32,33 +32,3 @@ for sem in features.keys():
             for ft in features[sem][stu][date].keys():
                 print '%s:%d' %(str(date) +ft,features[sem][stu][date][ft]),
         print
-
-'''
-for key in sorted(features.keys()):
-    print mx_rk-features[key]['rank'],
-    key_arr = key.split('.')
-    print 'qid:%s' % key_arr[0],
-
-    i = 1
-    for kk in sorted(features[key].keys()):
-        if not kk == 'rank':
-            print "%d:%f" % (i,features[key][kk]),
-            i += 1
-    print
-'''
-'''
-for f in bk_feature_list:
-    tot = 0
-    for key in features.keys():
-        tot += features[key][f]
-    print "%s:%d\n"%(f,tot)
-
-'''
-
-'''
-for key in sorted(features.keys()):
-    print key,
-    for kk in sorted(features[key].keys()):
-        print "%s:%d" % (kk,features[key][kk]),
-    print
-'''

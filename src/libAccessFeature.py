@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-  
+# -*- coding: utf-8 -*- 
 #coding=utf-8
 
 import codecs
@@ -20,14 +20,14 @@ def getFeature(infile,features):
     inLibAccessData = codecs.open(infile,'r')
     new_features = ['libacc0','libacc1','libacc2']
     features = utils.featureInit(features,new_features)
-    
+
     line = inLibAccessData.readline()
     line = inLibAccessData.readline()
     while line:
         line = line.strip()
         listArray = line.split('\t')
         line = inLibAccessData.readline()
-
+        
         sem = listArray[0]
         stu = listArray[1]
         date = utils.convertDate(sem,listArray[2])
