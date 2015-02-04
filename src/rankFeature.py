@@ -11,7 +11,7 @@ def getFeature(infile):
         line = line.strip()
         listArray = line.split('\t')
         sem = listArray[0]
-        stu = listArray[1]
+        stu = int(listArray[1])
         rank = int(listArray[2])
         mx_rk = max(rank,mx_rk)
         
@@ -25,10 +25,3 @@ def getFeature(infile):
         line = fr.readline()
 
     return rk,mx_rk
-'''
-    for key in rk.keys():
-        print key,
-        for val in rk[key].values():
-            print val,
-        print
-'''

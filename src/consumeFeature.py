@@ -40,29 +40,36 @@ def getFeature(infile):
 '''
 
 def eatTime(time):
-    time = time / 1000
-    if time < 90:
+    if time < 90000:
         return 0
-    elif time >= 113 and time < 140:
+    elif time >= 113000 and time < 140000:
         return 1
-    elif time >= 170 and time < 190:
+    elif time >= 170000 and time < 190000:
         return 2
     return -1
 
 def dormTime(time):
-    time = time / 1000
-    if time > 90 and time < 113:
+    if time > 60000 and time < 90000:
         return 0
-    elif time > 143 and time < 170:
+    elif time > 113000 and time < 133000:
         return 1
-    elif time > 193 and time < 213:
+    elif time > 213000:
         return 2
-    return -1 
+    return -1
+
+def otherTime(time):
+    if time < 120000:
+        return 0
+    elif time >= 120000 and time < 180000:
+        return 1
+    elif time >= 180000:
+        return 2
+    return -1
 
 def getFeature(infile,features):
     fr = codecs.open(infile,'r')
 
-    new_features = ['dorm0','dorm1','dorm2','eat0','eat1','eat2']
+    new_features = ['copy0','copy1','copy2','lib0','lib1','lib2','dorm0','dorm1','dorm2','classroom0','classroom1','classroom2','supermarket0','supermarket1','supermarket2','eat0','eat1','eat2','transport0','transport1','transport2']
     locations = {'打印':'copy','图书馆':'lib','宿舍':'dorm','教室':'classroom','超市':'supermarket','食堂':'eat','交通':'transport'}
     features = utils.featureInit(features,new_features)
 
@@ -74,7 +81,9 @@ def getFeature(infile,features):
         line = fr.readline()
 
         sem = listArray[0]
-        stu = listArray[1]
+        if infile.find('test') >= 0 and sem == '3':
+            continue
+        stu = int(listArray[1])
         loc = locations[listArray[2]]
         date = utils.convertDate(sem,listArray[3])
         time = int(listArray[4])
@@ -83,9 +92,9 @@ def getFeature(infile,features):
         if loc == 'dorm':
             interval = dormTime(time)
         elif loc == 'eat':
-            interval = dormTime(time)
+            interval = eatTime(time)
         else:
-            interval = -1
+            interval = otherTime(time)
         if date == -1 or interval == -1:
             continue
         features[sem][stu][date][loc+str(interval)] = 1    

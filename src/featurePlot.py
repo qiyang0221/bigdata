@@ -69,4 +69,3 @@ def draw(dictionary, feature):
        plt.ylabel(feature)
        plt.title('sem:' + str(key) )
        plt.show()
->>>>>>> d821087d0e0fd3c22162b11da86e618dd9c388b9

@@ -7,12 +7,12 @@ import matplotlib.pyplot as plt
 import utils
 
 def libTime(time):
-    time = time / 1000
-    if time < 113:
+    time = time
+    if time < 120000:
         return 0
-    elif time > 133 and time < 170:
+    elif time >= 120000 and time < 180000:
         return 1
-    elif time > 183 and time < 223:
+    elif time >= 180000 and time <= 223000:
         return 2
     return -1
 
@@ -29,7 +29,9 @@ def getFeature(infile,features):
         line = inLibAccessData.readline()
         
         sem = listArray[0]
-        stu = listArray[1]
+        if infile.find('test') >= 0 and sem == '3':
+            continue
+        stu = int(listArray[1])
         date = utils.convertDate(sem,listArray[2])
         time = int(listArray[3])
         interval = libTime(time)

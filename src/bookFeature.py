@@ -56,7 +56,14 @@ def getFeature(book_file_name,book_class_file_name,features):
     #feature_list = ['TV','TT', 'TU', 'TS', 'TP', 'TQ', 'TN', 'TL', 'TM', 'TJ', 'TK', 'TH', 'TF', 'TG','TD', 'TE', 'TB', 'A', 'C', 'B', 'E', 'D', 'G', 'F', 'I', 'H', 'K', 'J', 'M', 'L', 'O', 'N', 'Q', 'P', 'S', 'R', 'U', 'T', 'V', 'Y', 'X', 'Z'] 
     #add new features
    
-    new_features_map = bookStatics(book_file_name,bk_class) 
+    new_features_map = bookStatics(book_file_name,bk_class)
+    '''
+    for sem in new_features_map.keys():
+        print sem+':'
+        for bk_kind in new_features_map[sem].keys():
+            print "%s:%s" %(bk_kind,new_features_map[sem][bk_kind]),
+        print
+    '''
     new_features = ['book_0','book_1','book_2','book_3','book_4','book_5']
 
     features = utils.featureInit(features,new_features)
@@ -71,7 +78,9 @@ def getFeature(book_file_name,book_class_file_name,features):
         line = bk_fr.readline()
 
         sem = listArray[0]
-        stu = listArray[1]
+        if book_file_name.find('test') >= 0 and sem == '3':
+            continue
+        stu = int(listArray[1])
         book_index = listArray[2]
         date = utils.convertDate(sem,listArray[3])
         if date == -1:

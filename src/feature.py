@@ -19,16 +19,23 @@ libaccess_path = path + directory + '/lib_time.txt'
 consume_path = path + directory + '/consume.txt'
 
 features,mx_rk = rank.getFeature(rank_path)
+'''
+for sem in sorted(features.keys()):
+    for stu in sorted(features[sem].keys()):
+        print sem,stu,features[sem][stu]['rank']
+'''
 
 features = book.getFeature(book_path,book_class_path,features)
 features = consume.getFeature(consume_path,features)
 features = libaccess.getFeature(libaccess_path,features)
 
-for sem in features.keys():
-    for stu in features[sem].keys():
-        print sem,stu,
-        print "rank:%d" %(features[sem][stu]['rank']),
+for sem in sorted(features.keys()):
+    for stu in sorted(features[sem].keys()):
+        print (features[sem][stu]['rank']),
+        print 'qid:%s' % sem,
+        i = 1 
         for date in range(utils.getDateLen()):
-            for ft in features[sem][stu][date].keys():
-                print '%s:%d' %(str(date) +ft,features[sem][stu][date][ft]),
+            for ft in sorted(features[sem][stu][date].keys()):
+                print '%d:%d' %(i,features[sem][stu][date][ft]),
+                i += 1   
         print
